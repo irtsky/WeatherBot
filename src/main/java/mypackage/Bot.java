@@ -4,11 +4,11 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 
 public class Bot extends TelegramLongPollingBot {
 
+    //TODO: BOT_NAME is apparently unnecessary
     private final String BOT_NAME;
     private final String BOT_TOKEN;
 
@@ -31,14 +31,12 @@ public class Bot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         try{
             if (update.getMessage().getText().equals("/now")) {
-
                 Message inMessage = update.getMessage();
                 String chatId = inMessage.getChatId().toString();
                 SendMessage sendMessage = new SendMessage(chatId, WeatherApiClient.getCurrentWeather());
-
                 execute(sendMessage);
             }
-        } catch (TelegramApiException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
