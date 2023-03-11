@@ -16,6 +16,7 @@ public class Bot extends TelegramLongPollingBot {
         this.BOT_NAME = name;
         this.BOT_TOKEN = token;
     }
+
     @Override
     public String getBotUsername() {
         return this.BOT_NAME;
@@ -29,11 +30,11 @@ public class Bot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         try{
-            if (update.getMessage().getText().equals("/start")) {
+            if (update.getMessage().getText().equals("/now")) {
 
                 Message inMessage = update.getMessage();
                 String chatId = inMessage.getChatId().toString();
-                SendMessage sendMessage = new SendMessage(chatId, "hi");
+                SendMessage sendMessage = new SendMessage(chatId, WeatherApiClient.getCurrentWeather());
 
                 execute(sendMessage);
             }
