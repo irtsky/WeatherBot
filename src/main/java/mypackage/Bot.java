@@ -37,7 +37,7 @@ public class Bot extends TelegramLongPollingBot {
                 execute(sendMessage);
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }
