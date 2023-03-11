@@ -31,13 +31,11 @@ public class Bot extends TelegramLongPollingBot {
         try{
             if (update.getMessage().getText().equals("/start")) {
 
-                Message inMess = update.getMessage();
-                String chatId = inMess.getChatId().toString();
-                SendMessage outMess = new SendMessage();
+                Message inMessage = update.getMessage();
+                String chatId = inMessage.getChatId().toString();
+                SendMessage sendMessage = new SendMessage(chatId, "hi");
 
-                outMess.setChatId(chatId);
-                outMess.setText("hi");
-                execute(outMess);
+                execute(sendMessage);
             }
         } catch (TelegramApiException e) {
             e.printStackTrace();
