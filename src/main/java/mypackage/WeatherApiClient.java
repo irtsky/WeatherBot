@@ -20,12 +20,11 @@ public class WeatherApiClient {
                 .build();
         HttpResponse<String> resp = client.send(request, HttpResponse.BodyHandlers.ofString());
         JSONObject json = new JSONObject(resp.body());
-        String answer = "Currently "
-                + json.getJSONObject("current").getNumber("temp_c").toString()
+        return  "Currently "
+                + json.getJSONObject("current")
+                .getNumber("temp_c").toString()
                 + "C, "
-                + json.getJSONObject("current").getJSONObject("condition").getString("text");
-        return answer;
+                + json.getJSONObject("current")
+                .getJSONObject("condition").getString("text");
     }
-
-
 }
