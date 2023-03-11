@@ -26,4 +26,6 @@ public class WeatherApiClient {
                 + json.getJSONObject("current").getJSONObject("condition").getString("text");
         return answer;
     }
+
+
 }
