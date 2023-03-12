@@ -20,6 +20,9 @@ public class Main {
         System.out.println("Enter token");
         String token = reader.readLine();
 
+        System.out.println("Enter weather api key");
+        WeatherApiClient.setApiKey(reader.readLine());
+
         try {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(new Bot(name, token));
